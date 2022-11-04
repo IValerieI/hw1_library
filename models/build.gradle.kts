@@ -1,6 +1,5 @@
 plugins {
     java
-    application
 }
 
 group = "org.example"
@@ -12,8 +11,7 @@ repositories {
 
 dependencies {
     implementation("com.intellij:annotations:12.0")
-
-    implementation(project(":controller"))
+    implementation("org.projectlombok:lombok:1.18.24")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
@@ -24,15 +22,4 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
-}
-
-application {
-    mainClass.set("Application")
-}
-
-tasks.register<JavaExec>("startMainClass") {
-    group = "special"
-    args = listOf("Arthur Conan Doyle")
-    mainClass.set("Application")
-    classpath = sourceSets["main"].runtimeClasspath
 }
